@@ -18,6 +18,9 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
             this.InParameters.Add("telegramBot", new NodeParameter(this, "telegramBot", typeof(string), true));
 
             this.OutParameters.Add("message", new NodeParameter(this, "message", typeof(global::Telegram.Bot.Types.Message), false));
+            this.OutParameters.Add("chatId", new NodeParameter(this, "chatId", typeof(long), false));
+            this.OutParameters.Add("fromId", new NodeParameter(this, "fromId", typeof(int), false));
+            this.OutParameters.Add("from", new NodeParameter(this, "from", typeof(string), false));
         }
 
         public override bool CanBeExecuted => false;
@@ -43,6 +46,20 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
             {
                 telegramBotInstance.Bot.SendTextMessageAsync(e.Message.Chat.Id, "The chat ID is : " + e.Message.Chat.Id).Wait();
             }
+            else
+            {
+                var instanciatedParameters = this.InstanciateParametersForCycle();
+                instanciatedParameters["message"].SetValue(e.Message.Text);
+                instanciatedParameters["chatId"].SetValue(e.Message.Chat.Id);
+                instanciatedParameters["fromId"].SetValue(e.Message.From.Id);
+                instanciatedParameters["from"].SetValue(e.Message.From.Username);
+                this.Graph.AddCycle(this, instanciatedParameters);
+            }
+        }
+
+        public override void BeginCycle()
+        {
+            this.Next();
         }
     }
 }
