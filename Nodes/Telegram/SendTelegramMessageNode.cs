@@ -32,7 +32,8 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
         public override bool OnExecution()
         {
             TelegramBotInstanceNode telegramBotInstance = this.InParameters["telegramBot"].GetValue() as TelegramBotInstanceNode;
-            telegramBotInstance.Bot.SendTextMessageAsync(long.Parse(this.InParameters["chatId"].GetValue().ToString()), this.InParameters["message"].GetValue().ToString());
+            telegramBotInstance.Bot.SendTextMessageAsync(long.Parse(this.InParameters["chatId"].GetValue().ToString()), this.InParameters["message"].GetValue().ToString(),
+                global::Telegram.Bot.Types.Enums.ParseMode.Html);
             return true;
         }
     }

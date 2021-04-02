@@ -33,6 +33,12 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
             this.setupDefaultBehavior();
         }
 
+        public override void OnStop()
+        {
+            TelegramBotInstanceNode telegramBotInstance = this.InParameters["telegramBot"].GetValue() as TelegramBotInstanceNode;
+            telegramBotInstance.Bot.OnMessage -= Bot_OnMessage;
+        }
+
         private void setupDefaultBehavior()
         {
             TelegramBotInstanceNode telegramBotInstance = this.InParameters["telegramBot"].GetValue() as TelegramBotInstanceNode;
