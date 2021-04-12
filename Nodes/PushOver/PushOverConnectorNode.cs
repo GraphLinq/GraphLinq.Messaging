@@ -21,7 +21,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.PushOver
             this.OutParameters.Add("pushOver", new NodeParameter(this, "pushOver", typeof(PushOverConnectorNode), true));
         }
 
-        public PushoverClient Client { get; set; }
+        public Pushover Client { get; set; }
 
         public override bool CanBeExecuted => false;
 

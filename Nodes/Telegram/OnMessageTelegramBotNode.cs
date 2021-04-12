@@ -15,7 +15,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
         {
             this.IsEventNode = true;
 
-            this.InParameters.Add("telegramBot", new NodeParameter(this, "telegramBot", typeof(string), true));
+            this.InParameters.Add("telegramBot", new NodeParameter(this, "telegramBot", typeof(object), true));
 
             this.OutParameters.Add("message", new NodeParameter(this, "message", typeof(global::Telegram.Bot.Types.Message), false));
             this.OutParameters.Add("chatId", new NodeParameter(this, "chatId", typeof(long), false));
