@@ -35,7 +35,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.PushOver
                 title, message
             };
 
-            PushResponse response = pushOverConnector.Client.Push(request);
+            PushResponse response = pushOverConnector.Client.Push(title, message);
 
             return true;
         }
