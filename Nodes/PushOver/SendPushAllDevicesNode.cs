@@ -30,6 +30,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.PushOver
             PushOverConnectorNode pushOverConnector = this.InParameters["pushOver"].GetValue() as PushOverConnectorNode;
             var title = this.InParameters["title"].GetValue().ToString();
             var message = this.InParameters["message"].GetValue().ToString();
+
             PushResponse response = pushOverConnector.Client.Push(title, message);
 
             return true;
