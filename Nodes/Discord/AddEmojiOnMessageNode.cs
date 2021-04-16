@@ -13,7 +13,7 @@ using Discord.Net;
 namespace NodeBlock.Plugin.Messaging.Nodes.Discord
 {
 
-    [NodeDefinition("AddEmojiOnMessageNode", "Add Emoji On Message", NodeTypeEnum.Function, "Discord")]
+    [NodeDefinition("AddEmojiOnMessageNode", "Add Emoji On Message, example emojiName: 👀", NodeTypeEnum.Function, "Discord")]
     [NodeGraphDescription("Add emoji on message")]
     public class AddEmojiOnMessageNode : Node
     {
@@ -26,6 +26,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
             this.InParameters.Add("channelId", new NodeParameter(this, "channelId", typeof(ulong), true));
             this.InParameters.Add("messageId", new NodeParameter(this, "messageId", typeof(ulong), true));
             this.InParameters.Add("guildId", new NodeParameter(this, "guildId", typeof(ulong), true));
+            this.InParameters.Add("emoji", new NodeParameter(this, "emoji", typeof(string), true));
 
         }
 
@@ -40,11 +41,13 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
             var guild = discordClient.GetGuild(ulong.Parse(this.InParameters["guildId"].GetValue().ToString()));
             var channel = guild.GetTextChannel(ulong.Parse(this.InParameters["channelId"].GetValue().ToString()));
             if (channel == null) return false;
-            var message = channel.GetMessageAsync(ulong.Parse(this.InParameters["channelId"].GetValue().ToString()));
+            var message = channel.GetMessageAsync(ulong.Parse(this.InParameters["messageId"].GetValue().ToString()));
             message.Wait();
-            var reaction  = message.Result.AddReactionAsync(new Emoji(this.InParameters["channelId"].GetValue().ToString()));
+            var emoji = new Emoji(this.InParameters["emoji"].GetValue().ToString());
+            var reaction = message.Result.AddReactionAsync(emoji);
             reaction.Wait();
             return true;
+
         }
     }
 }

@@ -31,7 +31,8 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
             var discordClient = (this.InParameters["discord"].GetValue() as DiscordConnector).DiscordClient;
             var guilds = discordClient.Guilds;
             var guild = discordClient.GetGuild(ulong.Parse(this.InParameters["guildId"].GetValue().ToString()));
-            var user = guild.GetUser(ulong.Parse(this.InParameters["userId"].GetValue().ToString()));
+            var userId = this.InParameters["userId"].GetValue().ToString();
+            var user = guild.Users.FirstOrDefault(x => x.Id == ulong.Parse(userId));
             var role = guild.Roles.FirstOrDefault(x => x.Name == this.InParameters["roleName"].GetValue().ToString());
             if (role == null) return false;
             var roleRequest = user.AddRoleAsync(role);

@@ -19,10 +19,9 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
 
             this.InParameters.Add("discord", new NodeParameter(this, "discord", typeof(DiscordConnector), true));
             this.InParameters.Add("channelId", new NodeParameter(this, "channelId", typeof(ulong), true));
-            this.OutParameters.Add("guildId", new NodeParameter(this, "guildId", typeof(ulong), true));
-            this.OutParameters.Add("messageId", new NodeParameter(this, "message", typeof(ulong), true));
-
-            this.OutParameters.Add("userId", new NodeParameter(this, "guildId", typeof(ulong), true));
+            this.InParameters.Add("messageId", new NodeParameter(this, "messageId", typeof(ulong), true));
+            this.InParameters.Add("emoteName", new NodeParameter(this, "emoteName", typeof(string), true));
+            this.OutParameters.Add("userId", new NodeParameter(this, "userId", typeof(ulong), true));
 
         }
 
@@ -39,9 +38,17 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
 
         private Task DiscordClient_ReactionRemoved(Cacheable<IUserMessage, ulong> arg1, global::Discord.WebSocket.ISocketMessageChannel arg2, global::Discord.WebSocket.SocketReaction arg3)
         {
-            var parameters = this.InstanciateParametersForCycle();
-            parameters["userId"].SetValue(arg1.Id);
-            this.Graph.AddCycle(this, parameters);
+            if (arg1.Id == ulong.Parse(this.InParameters["messageId"].GetValue().ToString()))
+            {
+                var emote = new Emoji(this.InParameters["emoteName"].GetValue().ToString());
+                if (emote.Name == arg3.Emote.Name)
+                {
+                    var parameters = this.InstanciateParametersForCycle();
+                    parameters["userId"].SetValue(arg3.UserId);
+                    this.Graph.AddCycle(this, parameters);
+                }
+            }
+
             return Task.CompletedTask;
         }
 
