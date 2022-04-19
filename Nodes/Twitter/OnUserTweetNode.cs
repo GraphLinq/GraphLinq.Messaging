@@ -22,6 +22,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitter
             this.InParameters.Add("user", new NodeParameter(this, "user", typeof(string), true));
 
             this.OutParameters.Add("message", new NodeParameter(this, "message", typeof(string), false));
+            this.OutParameters.Add("link", new NodeParameter(this, "link", typeof(string), false));
         }
 
         public override bool CanBeExecuted => false;
@@ -51,6 +52,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitter
             if (e.Tweet.CreatedBy.ScreenName != this.InParameters["user"].GetValue().ToString()) return;
             var instanciatedParameters = this.InstanciateParametersForCycle();
             instanciatedParameters["message"].SetValue(e.Tweet.FullText);
+            instanciatedParameters["link"].SetValue(e.Tweet.Url);
             this.Graph.AddCycle(this, instanciatedParameters);
         }
 
