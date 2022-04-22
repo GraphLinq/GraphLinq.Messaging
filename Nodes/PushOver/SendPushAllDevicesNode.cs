@@ -7,12 +7,12 @@ using System.Text;
 
 namespace NodeBlock.Plugin.Messaging.Nodes.PushOver
 {
-    [NodeDefinition("SendPushAllDevicesNode", "Send Push All Devices", NodeTypeEnum.Function, "PushOver")]
+    [NodeDefinition("SendPushOverAllDevicesNode", "Send Push All Devices", NodeTypeEnum.Function, "PushOver")]
     [NodeGraphDescription("Send a push via PushOver on all your devices")]
-    public class SendPushAllDevicesNode : Node
+    public class SendPushOverAllDevicesNode : Node
     {
-        public SendPushAllDevicesNode(string id, BlockGraph graph)
-            : base(id, graph, typeof(SendPushAllDevicesNode).Name)
+        public SendPushOverAllDevicesNode(string id, BlockGraph graph)
+            : base(id, graph, typeof(SendPushOverAllDevicesNode).Name)
         {
             this.InParameters = new Dictionary<string, NodeParameter>()
             {
