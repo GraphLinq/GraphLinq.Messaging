@@ -7,12 +7,12 @@ using System.Text;
 
 namespace NodeBlock.Plugin.Messaging.Nodes.PushBullet
 {
-    [NodeDefinition("SendPushAllDevicesNode", "Send Push All Devices", NodeTypeEnum.Function, "PushBullet")]
+    [NodeDefinition("SendPushBulletAllDevicesNode", "Send Push All Devices", NodeTypeEnum.Function, "PushBullet")]
     [NodeGraphDescription("Send a push via PushBullet on all your devices")]
-    public class SendPushAllDevicesNode : Node
+    public class SendPushBulletAllDevicesNode : Node
     {
-        public SendPushAllDevicesNode(string id, BlockGraph graph)
-            : base(id, graph, typeof(SendPushAllDevicesNode).Name)
+        public SendPushBulletAllDevicesNode(string id, BlockGraph graph)
+            : base(id, graph, typeof(SendPushBulletAllDevicesNode).Name)
         {
             this.InParameters = new Dictionary<string, NodeParameter>()
             {
