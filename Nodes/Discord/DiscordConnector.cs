@@ -12,6 +12,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
 {
     [NodeDefinition("DiscordConnector", "Discord Connector", NodeTypeEnum.Connector, "Discord")]
     [NodeGraphDescription("Discord Connector, allow you to receive and send messages on discord guilds. example type : account or bot")]
+    [NodeSpecialActionAttribute("Go to Discord Developers", "open_url", "https://discord.com/developers/applications")]
     public class DiscordConnector : Node
     {
         public DiscordConnector(string id, BlockGraph graph)

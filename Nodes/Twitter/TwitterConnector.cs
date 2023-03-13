@@ -11,6 +11,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitter
 {
     [NodeDefinition("TwitterConnector", "Twitter Connector", NodeTypeEnum.Connector, "Twitter")]
     [NodeGraphDescription("Twitter connector, it allow you to track tweets users or tweet some text to create credentials go here https://developer.twitter.com/en/apps/create")]
+    [NodeSpecialActionAttribute("Open Twitter Developer", "open_url", "https://developer.twitter.com/en/apps/create")]
     public class TwitterConnector : Node
     {
         public TwitterConnector(string id, BlockGraph graph)

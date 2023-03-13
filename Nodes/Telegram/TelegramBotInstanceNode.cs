@@ -10,6 +10,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
 {
     [NodeDefinition("TelegramBotInstanceNode", "Telegram Bot", NodeTypeEnum.Connector, "Telegram")]
     [NodeGraphDescription("Telegram connector, to retrieve your AccessToken talk to BotFather to create a new bot")]
+    [NodeSpecialActionAttribute("Talk to @BotFather", "open_url", "https://t.me/BotFather")]
     public class TelegramBotInstanceNode : Node
     {
         public TelegramBotInstanceNode(string id, BlockGraph graph)

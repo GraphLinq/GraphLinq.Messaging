@@ -9,6 +9,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.PushBullet
 {
     [NodeDefinition("PushBulletConnectorNode", "PushBullet Connector", NodeTypeEnum.Connector, "PushBullet")]
     [NodeGraphDescription("PushBullet is a service that allow you to send push notification to your smartphone")]
+    [NodeSpecialActionAttribute("Go to PushBullet", "open_url", "https://www.pushbullet.com/#settings/account")]
     public class PushBulletConnectorNode : Node
     {
         public PushBulletConnectorNode(string id, BlockGraph graph)
