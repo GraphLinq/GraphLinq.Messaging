@@ -10,18 +10,18 @@ using System.Net.Http;
 
 namespace NodeBlock.Plugin.Messaging.Nodes.ShortenURL
 {
-    [NodeDefinition("ShortenLinkNode", "Shorten a URL", NodeTypeEnum.Function, "Shorten URL")]
-    [NodeGraphDescription("Shorten a long URL using glq.link shortener")]
+    [NodeDefinition("ExpandLinkNode", "Expand shortened URL", NodeTypeEnum.Function, "Shorten URL")]
+    [NodeGraphDescription("Expand a Shortened URL using glq.link shortener")]
     [NodeSpecialActionAttribute("Get API key/View Stats", "open_url", "https://glq.link")]
-    public class ShortenLinkNode: Node
+    public class ExpandLinkNode : Node
     {
-        public ShortenLinkNode(string id, BlockGraph graph)
-            : base(id, graph, typeof(ShortenLinkNode).Name)
+        public ExpandLinkNode(string id, BlockGraph graph)
+            : base(id, graph, typeof(ExpandLinkNode).Name)
         {
             this.InParameters.Add("apiKey", new NodeParameter(this, "apiKey", typeof(string), true));
-            this.InParameters.Add("originalLink", new NodeParameter(this, "originalLink", typeof(string), true));
+            this.InParameters.Add("shortLink", new NodeParameter(this, "shortLink", typeof(string), true));
 
-            this.OutParameters.Add("shortLink", new NodeParameter(this, "shortLink", typeof(string), true));
+            this.OutParameters.Add("originalLink", new NodeParameter(this, "originalLink", typeof(string), true));
         }
 
         private HttpClient client = new HttpClient();
@@ -32,13 +32,15 @@ namespace NodeBlock.Plugin.Messaging.Nodes.ShortenURL
 
         public override bool OnExecution()
         {
-            var link = this.InParameters["originalLink"].GetValue().ToString();
+            var link = this.InParameters["shortLink"].GetValue().ToString();
             var key = this.InParameters["apiKey"].GetValue().ToString();
 
-            var response = client.GetAsync($"https://glq.link/api/v2/action/shorten?key={key}&url={link}").Result;
+
+
+            var response = client.GetAsync($"https://glq.link/api/v2/action/lookup?key={key}&url_ending={link}").Result;
             var result = response.Content.ReadAsStringAsync().Result;
 
-            this.OutParameters["shortLink"].SetValue(result.ToString());
+            this.OutParameters["originalLink"].SetValue(result.ToString());
 
             return true;
         }
