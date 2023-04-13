@@ -8,6 +8,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 {
     [NodeDefinition("TwitchOnChatMessageNode", "On Twitch Chat Message", NodeTypeEnum.Event, "Twitch")]
     [NodeGraphDescription("This event trigger when someone send a message in channel chat")]
+    [NodeIDEParameters(Hidden = true)]
     public class TwitchOnChatMessageNode : Node
     {
         public TwitchOnChatMessageNode(string id, BlockGraph graph)
@@ -56,7 +57,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
         private void Client_OnMessageReceived(object sender, TwitchLib.Client.Events.OnMessageReceivedArgs e)
         {
             if (e.ChatMessage.IsMe) return;
-            var instanciatedParameters = this.InstanciateParametersForCycle();
+            var instanciatedParameters = this.InstanciatedParametersForCycle();
             instanciatedParameters["id"].SetValue(e.ChatMessage.Id);
             instanciatedParameters["channel"].SetValue(e.ChatMessage.Channel);
             instanciatedParameters["message"].SetValue(e.ChatMessage.Message);

@@ -45,7 +45,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
             var id = ulong.Parse(this.InParameters["channelId"].GetValue().ToString());
             if (arg.Channel is IMessageChannel && arg.Channel.Id ==  id && arg.Author.Id != discordClient.CurrentUser.Id)
             {
-                var parameters = this.InstanciateParametersForCycle();
+                var parameters = this.InstanciatedParametersForCycle();
                 var guild = arg.Channel as SocketGuildChannel;
                 parameters["guildId"].SetValue(guild.Guild.Id);
                 parameters["channel"].SetValue(arg.Channel.Id);

@@ -9,6 +9,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 {
     [NodeDefinition("SendTwitchMessageNode", "Send Twitch Message", NodeTypeEnum.Function, "Twitch")]
     [NodeGraphDescription("Send a message on Twitch on a channel")]
+    [NodeIDEParameters(Hidden = true)]
     public class SendTwitchMessageNode : Node
     {
         public SendTwitchMessageNode(string id, BlockGraph graph)

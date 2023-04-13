@@ -50,7 +50,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitter
         private void Stream_MatchingTweetReceived(object sender, Tweetinvi.Events.MatchedTweetReceivedEventArgs e)
         {
             if (e.Tweet.CreatedBy.ScreenName != this.InParameters["user"].GetValue().ToString()) return;
-            var instanciatedParameters = this.InstanciateParametersForCycle();
+            var instanciatedParameters = this.InstanciatedParametersForCycle();
             instanciatedParameters["message"].SetValue(e.Tweet.FullText);
             instanciatedParameters["link"].SetValue(e.Tweet.Url);
             this.Graph.AddCycle(this, instanciatedParameters);

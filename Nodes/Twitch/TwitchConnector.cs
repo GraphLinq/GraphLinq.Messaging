@@ -14,6 +14,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
     [NodeDefinition("TwitchConnector", "Twitch Connector", NodeTypeEnum.Connector, "Twitch")]
     [NodeGraphDescription("Twitch connector, it allow you to create twitch bot easily")]
     [NodeSpecialActionAttribute("Open Twitch Developer", "open_url", "https://dev.twitch.tv/")]
+    [NodeIDEParameters(Hidden = true)]
     public class TwitchConnector : Node
     {
         public TwitchConnector(string id, BlockGraph graph)

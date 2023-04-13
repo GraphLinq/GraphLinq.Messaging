@@ -71,7 +71,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
                         @params.Add(param);
                     }
 
-                    var parameters = this.InstanciateParametersForCycle();
+                    var parameters = this.InstanciatedParametersForCycle();
                     var guild = arg.Channel as SocketGuildChannel;
                     parameters["guildId"].SetValue(guild.Guild.Id);
                     parameters["channel"].SetValue(arg.Channel.Id);

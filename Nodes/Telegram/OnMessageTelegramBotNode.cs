@@ -54,7 +54,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Telegram
             }
             else
             {
-                var instanciatedParameters = this.InstanciateParametersForCycle();
+                var instanciatedParameters = this.InstanciatedParametersForCycle();
                 instanciatedParameters["message"].SetValue(e.Message.Text);
                 instanciatedParameters["chatId"].SetValue(e.Message.Chat.Id);
                 instanciatedParameters["fromId"].SetValue(e.Message.From.Id);

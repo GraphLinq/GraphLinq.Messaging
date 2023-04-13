@@ -8,6 +8,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 {
     [NodeDefinition("TwitchOnChannelJoinedNode", "On Twitch Channel Joined", NodeTypeEnum.Event, "Twitch")]
     [NodeGraphDescription("This event trigger when your bot join a twitch channel")]
+    [NodeIDEParameters(Hidden = true)]
     public class TwitchOnChannelJoinedNode : Node
     {
         public TwitchOnChannelJoinedNode(string id, BlockGraph graph)
@@ -44,7 +45,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 
         private void Client_OnJoinedChannel(object sender, TwitchLib.Client.Events.OnJoinedChannelArgs e)
         {
-            var instanciatedParameters = this.InstanciateParametersForCycle();
+            var instanciatedParameters = this.InstanciatedParametersForCycle();
             instanciatedParameters["channel"].SetValue(e.Channel);
             this.Graph.AddCycle(this, instanciatedParameters);
         }

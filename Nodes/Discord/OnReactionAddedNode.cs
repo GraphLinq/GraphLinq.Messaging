@@ -45,7 +45,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
                 var emote = new Emoji(this.InParameters["emoteName"].GetValue().ToString());
                 if(emote.Name == arg3.Emote.Name)
                 {
-                    var parameters = this.InstanciateParametersForCycle();
+                    var parameters = this.InstanciatedParametersForCycle();
                     parameters["userId"].SetValue(arg3.UserId);
                     this.Graph.AddCycle(this, parameters);
                 }        

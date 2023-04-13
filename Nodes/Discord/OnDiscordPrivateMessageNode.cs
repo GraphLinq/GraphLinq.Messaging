@@ -42,7 +42,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Discord
         {
             if(arg.Channel is IDMChannel)
             {
-                var parameters = this.InstanciateParametersForCycle();
+                var parameters = this.InstanciatedParametersForCycle();
                 parameters["message"].SetValue(arg.Content);
                 parameters["from"].SetValue(arg.Author.Username);
                 parameters["messageId"].SetValue(arg.Id);

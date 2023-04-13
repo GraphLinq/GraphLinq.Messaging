@@ -8,6 +8,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 {
     [NodeDefinition("JoinTwitchChannelNode", "Join Twitch channel", NodeTypeEnum.Function, "Twitch")]
     [NodeGraphDescription("Join a twitch channel as a bot")]
+    [NodeIDEParameters(Hidden = true)]
     public class JoinTwitchChannelNode : Node
     {
         public JoinTwitchChannelNode(string id, BlockGraph graph)

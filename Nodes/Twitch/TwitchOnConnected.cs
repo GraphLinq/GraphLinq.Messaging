@@ -8,6 +8,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 {
     [NodeDefinition("TwitchOnConnected", "On Twitch Connected", NodeTypeEnum.Event, "Twitch")]
     [NodeGraphDescription("This event allow you to do things after a twitch connection")]
+    [NodeIDEParameters(Hidden = true)]
     public class TwitchOnConnected : Node
     {
         public TwitchOnConnected(string id, BlockGraph graph)
@@ -42,7 +43,7 @@ namespace NodeBlock.Plugin.Messaging.Nodes.Twitch
 
         private void Client_OnConnected(object sender, TwitchLib.Client.Events.OnConnectedArgs e)
         {
-            var instanciatedParameters = this.InstanciateParametersForCycle();
+            var instanciatedParameters = this.InstanciatedParametersForCycle();
             this.Graph.AddCycle(this, instanciatedParameters);
         }
 
