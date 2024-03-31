@@ -22,15 +22,15 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Costura.Fody" Version="5.0.0-alpha0411">
+    <PackageReference Include="Costura.Fody" Version="5.7.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Discord.Net" Version="2.3.0" />
-    <PackageReference Include="OpenAI" Version="1.6.0" />
+    <PackageReference Include="OpenAI" Version="1.11.0" />
     <PackageReference Include="PushBulletSharp" Version="3.1.0" />
     <PackageReference Include="Telegram.Bot" Version="16.0.2" />
-    <PackageReference Include="TweetinviAPI" Version="5.0.3" />
+    <PackageReference Include="TweetinviAPI" Version="5.0.4" />
     <PackageReference Include="PushoverNET" Version="1.0.28" />
     <PackageReference Include="TwitchLib.Client" Version="3.3.1" />
   </ItemGroup>
